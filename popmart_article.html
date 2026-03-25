@@ -1,0 +1,1132 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pop Mart — From Blind Box to Global IP Empire</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=IBM+Plex+Sans+Thai:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --pop-purple: #6C3CE1;
+    --pop-purple-light: #A78BFA;
+    --pop-purple-dark: #4C1D95;
+    --pop-pink: #EC4899;
+    --pop-yellow: #FBBF24;
+    --pop-cyan: #22D3EE;
+    --pop-green: #34D399;
+    --pop-red: #F87171;
+    --bg-primary: #08080C;
+    --bg-card: #0F0F16;
+    --bg-card-hover: #15151F;
+    --border-subtle: rgba(108,60,225,0.12);
+    --border-accent: rgba(108,60,225,0.3);
+    --text-primary: #EEEDF2;
+    --text-secondary: #A8A3B5;
+    --text-muted: #6B6580;
+    --gradient-hero: linear-gradient(135deg, #6C3CE1 0%, #EC4899 50%, #FBBF24 100%);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: 'IBM Plex Sans Thai', sans-serif;
+    font-weight: 300;
+    line-height: 1.85;
+    overflow-x: hidden;
+  }
+
+  /* Grain overlay */
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9999;
+  }
+
+  /* ─── COVER PAGE ─── */
+  .cover {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 3rem 2rem;
+    overflow: hidden;
+    background: var(--bg-primary);
+  }
+
+  .cover::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 50% 50%, rgba(108,60,225,0.1) 0%, transparent 55%),
+      radial-gradient(ellipse at 20% 80%, rgba(236,72,153,0.06) 0%, transparent 40%),
+      radial-gradient(ellipse at 80% 20%, rgba(251,191,36,0.04) 0%, transparent 40%);
+  }
+
+  /* Geometric decorative lines */
+  .cover::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 480px;
+    height: 480px;
+    border: 1px solid rgba(108,60,225,0.07);
+    border-radius: 50%;
+    pointer-events: none;
+    animation: coverRingPulse 6s ease-in-out infinite;
+  }
+
+  @keyframes coverRingPulse {
+    0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+    50% { transform: translate(-50%, -50%) scale(1.08); opacity: 0.5; }
+  }
+
+  .cover-ring-2 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 620px;
+    height: 620px;
+    border: 1px solid rgba(108,60,225,0.04);
+    border-radius: 50%;
+    pointer-events: none;
+    animation: coverRingPulse 8s 1s ease-in-out infinite;
+  }
+
+  .cover-ring-3 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 760px;
+    height: 760px;
+    border: 1px solid rgba(108,60,225,0.025);
+    border-radius: 50%;
+    pointer-events: none;
+    animation: coverRingPulse 10s 2s ease-in-out infinite;
+  }
+
+  .cover-content {
+    position: relative;
+    z-index: 2;
+    max-width: 700px;
+  }
+
+  .cover-fund-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--pop-purple-light);
+    background: rgba(108,60,225,0.06);
+    border: 1px solid rgba(108,60,225,0.15);
+    border-radius: 100px;
+    padding: 0.55rem 1.6rem;
+    margin-bottom: 3rem;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.2s forwards;
+  }
+
+  .cover-fund-badge .diamond {
+    width: 5px;
+    height: 5px;
+    background: var(--pop-purple-light);
+    transform: rotate(45deg);
+    flex-shrink: 0;
+  }
+
+  .cover-series-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 1.2rem;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.35s forwards;
+  }
+
+  .cover h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2.2rem, 6vw, 4rem);
+    font-weight: 400;
+    line-height: 1.15;
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.45s forwards;
+  }
+
+  .cover h1 .gradient-text {
+    background: var(--gradient-hero);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .cover-divider {
+    width: 60px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--pop-purple), transparent);
+    margin: 0 auto 1.5rem;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.55s forwards;
+  }
+
+  .cover-subtitle {
+    font-family: 'Instrument Serif', serif;
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    font-style: italic;
+    color: var(--text-secondary);
+    max-width: 520px;
+    margin: 0 auto 3rem;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.6s forwards;
+  }
+
+  .cover-meta-grid {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    gap: 0 2.5rem;
+    justify-content: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.05em;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.7s forwards;
+  }
+
+  .cover-meta-item {
+    text-align: center;
+  }
+
+  .cover-meta-item .label {
+    color: var(--text-muted);
+    font-size: 0.58rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 0.3rem;
+  }
+
+  .cover-meta-item .value {
+    color: var(--text-primary);
+    font-size: 0.75rem;
+  }
+
+  .cover-fund-name {
+    margin-top: 3.5rem;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.85s forwards;
+  }
+
+  .cover-fund-name .team {
+    font-family: 'IBM Plex Sans Thai', sans-serif;
+    font-size: 0.88rem;
+    font-weight: 400;
+    color: var(--text-secondary);
+    letter-spacing: 0.02em;
+  }
+
+  .cover-fund-name .fund {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.05rem;
+    color: var(--pop-purple-light);
+    margin-top: 0.3rem;
+    letter-spacing: 0.02em;
+  }
+
+  .cover-scroll-hint {
+    position: absolute;
+    bottom: 2.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    opacity: 0;
+    animation: fadeUp 0.8s 1.2s forwards;
+  }
+
+  .cover-scroll-hint span {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.55rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  .cover-scroll-hint .arrow {
+    width: 1px;
+    height: 24px;
+    background: linear-gradient(to bottom, var(--pop-purple-light), transparent);
+    animation: scrollArrow 2s ease-in-out infinite;
+  }
+
+  @keyframes scrollArrow {
+    0%, 100% { opacity: 0.3; transform: scaleY(0.6); }
+    50% { opacity: 1; transform: scaleY(1); }
+  }
+
+  @media (max-width: 600px) {
+    .cover-meta-grid { grid-template-columns: 1fr; gap: 1rem 0; }
+    .cover-fund-badge { font-size: 0.55rem; padding: 0.45rem 1.2rem; }
+    .cover::after { width: 300px; height: 300px; }
+    .cover-ring-2 { width: 400px; height: 400px; }
+    .cover-ring-3 { display: none; }
+  }
+
+  /* ─── HERO ─── */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -30%;
+    left: -20%;
+    width: 140%;
+    height: 140%;
+    background:
+      radial-gradient(ellipse at 30% 40%, rgba(108,60,225,0.12) 0%, transparent 50%),
+      radial-gradient(ellipse at 70% 60%, rgba(236,72,153,0.08) 0%, transparent 45%),
+      radial-gradient(ellipse at 50% 80%, rgba(251,191,36,0.05) 0%, transparent 40%);
+    animation: heroFloat 10s ease-in-out infinite alternate;
+  }
+
+  @keyframes heroFloat {
+    from { transform: translateY(0) rotate(0deg); }
+    to { transform: translateY(-15px) rotate(0.5deg); }
+  }
+
+  /* Decorative floating orbs */
+  .hero .orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(60px);
+    opacity: 0.15;
+    animation: orbFloat 6s ease-in-out infinite alternate;
+  }
+  .hero .orb-1 { width: 300px; height: 300px; background: var(--pop-purple); top: 10%; left: 5%; animation-delay: 0s; }
+  .hero .orb-2 { width: 200px; height: 200px; background: var(--pop-pink); bottom: 15%; right: 10%; animation-delay: -2s; }
+  .hero .orb-3 { width: 150px; height: 150px; background: var(--pop-yellow); top: 20%; right: 15%; animation-delay: -4s; }
+
+  @keyframes orbFloat {
+    from { transform: translate(0, 0); }
+    to { transform: translate(15px, -20px); }
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 860px;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--pop-purple-light);
+    background: rgba(108,60,225,0.08);
+    border: 1px solid rgba(108,60,225,0.2);
+    border-radius: 100px;
+    padding: 0.5rem 1.4rem;
+    margin-bottom: 2.5rem;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.2s forwards;
+  }
+
+  .hero-badge .dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--pop-green);
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+
+  .hero h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2.8rem, 7.5vw, 5.5rem);
+    font-weight: 400;
+    line-height: 1.08;
+    margin-bottom: 1.2rem;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.35s forwards;
+  }
+
+  .hero h1 .gradient-text {
+    background: var(--gradient-hero);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-sub {
+    font-family: 'Instrument Serif', serif;
+    font-size: clamp(1rem, 2.2vw, 1.45rem);
+    font-style: italic;
+    color: var(--text-secondary);
+    max-width: 600px;
+    margin: 0 auto;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.5s forwards;
+  }
+
+  .hero-meta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 2.5rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    letter-spacing: 0.05em;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.65s forwards;
+  }
+
+  .hero-meta .sep { color: rgba(108,60,225,0.4); }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(28px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ─── CONTENT ─── */
+  .content-wrapper {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 2rem 6rem;
+  }
+
+  /* Section divider */
+  .section-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.2rem;
+    margin: 5rem 0 2.2rem;
+  }
+
+  .section-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    color: var(--pop-purple-light);
+    background: rgba(108,60,225,0.1);
+    border: 1px solid rgba(108,60,225,0.2);
+    border-radius: 4px;
+    padding: 0.25rem 0.6rem;
+    flex-shrink: 0;
+    margin-top: 0.35rem;
+  }
+
+  .section-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.65rem;
+    font-weight: 400;
+    color: var(--text-primary);
+    line-height: 1.35;
+  }
+
+  /* Paragraphs */
+  p {
+    font-size: 1.02rem;
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+  }
+  p strong { color: var(--text-primary); font-weight: 600; }
+
+  /* ─── STAT CARDS ─── */
+  .stats-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1rem;
+    margin: 2.5rem 0;
+  }
+
+  .stat-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: 10px;
+    padding: 1.6rem 1.3rem;
+    text-align: center;
+    transition: border-color 0.3s, transform 0.3s, background 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--gradient-hero);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .stat-card:hover {
+    border-color: var(--border-accent);
+    transform: translateY(-2px);
+    background: var(--bg-card-hover);
+  }
+
+  .stat-card:hover::before { opacity: 1; }
+
+  .stat-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 0.5rem;
+  }
+
+  .stat-value {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2rem;
+    color: var(--text-primary);
+    line-height: 1.2;
+  }
+
+  .stat-unit {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    margin-top: 0.2rem;
+  }
+
+  .stat-growth {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.78rem;
+    font-weight: 500;
+    margin-top: 0.5rem;
+  }
+
+  .stat-growth.up { color: var(--pop-green); }
+  .stat-growth.down { color: var(--pop-red); }
+  .stat-growth.neutral { color: var(--pop-yellow); }
+
+  /* ─── TABLE ─── */
+  .table-wrap {
+    margin: 2.5rem 0;
+    overflow-x: hidden;
+    border: 1px solid var(--border-subtle);
+    border-radius: 10px;
+    background: var(--bg-card);
+  }
+
+  .table-wrap table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.92rem;
+    table-layout: fixed;
+  }
+
+  .table-wrap thead th {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--pop-purple-light);
+    padding: 1rem 1.2rem;
+    text-align: right;
+    border-bottom: 1px solid var(--border-subtle);
+    word-wrap: break-word;
+  }
+
+  .table-wrap thead th:first-child { text-align: left; width: 38%; }
+
+  .table-wrap tbody td {
+    padding: 0.9rem 1.2rem;
+    text-align: right;
+    border-bottom: 1px solid rgba(255,255,255,0.03);
+    color: var(--text-secondary);
+    word-wrap: break-word;
+  }
+
+  .table-wrap tbody td:first-child {
+    text-align: left;
+    color: var(--text-primary);
+    font-weight: 400;
+  }
+
+  .table-wrap tbody tr:last-child td { border-bottom: none; }
+  .table-wrap tbody tr:hover { background: rgba(108,60,225,0.04); }
+
+  .badge-growth {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    font-weight: 500;
+    padding: 0.15em 0.55em;
+    border-radius: 4px;
+    background: rgba(52,211,153,0.12);
+    color: var(--pop-green);
+  }
+
+  /* ─── PULL QUOTE ─── */
+  .pull-quote {
+    position: relative;
+    margin: 3rem 0;
+    padding: 2rem 2rem 2rem 2.5rem;
+    border-left: 3px solid var(--pop-purple);
+    background: linear-gradient(135deg, rgba(108,60,225,0.05), transparent);
+    border-radius: 0 8px 8px 0;
+  }
+
+  .pull-quote p {
+    font-family: 'Instrument Serif', serif;
+    font-size: 1.25rem;
+    font-style: italic;
+    color: var(--text-primary);
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  .pull-quote .attr {
+    font-family: 'IBM Plex Sans Thai', sans-serif;
+    font-size: 0.8rem;
+    font-style: normal;
+    color: var(--pop-purple-light);
+    margin-top: 0.8rem;
+    letter-spacing: 0.03em;
+  }
+
+  /* ─── HIGHLIGHT BOX ─── */
+  .highlight-box {
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: 10px;
+    padding: 2rem 2rem;
+    margin: 2.5rem 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .highlight-box::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--gradient-hero);
+  }
+
+  .highlight-box h4 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.1rem;
+    color: var(--pop-purple-light);
+    margin-bottom: 1rem;
+  }
+
+  .highlight-box p { margin-bottom: 0.7rem; font-size: 0.95rem; }
+  .highlight-box p:last-child { margin-bottom: 0; }
+
+  /* ─── RISK / OPINION CARD ─── */
+  .opinion-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: 10px;
+    padding: 0;
+    margin: 2rem 0;
+    overflow: hidden;
+  }
+
+  .opinion-card-header {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    padding: 1.2rem 1.8rem;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  .opinion-card-header .icon {
+    font-size: 1.1rem;
+  }
+
+  .opinion-card-header h5 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1rem;
+    font-weight: 400;
+    color: var(--text-primary);
+  }
+
+  .opinion-card-body {
+    padding: 1.5rem 1.8rem;
+  }
+
+  .opinion-item {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.4rem;
+    align-items: flex-start;
+  }
+
+  .opinion-item:last-child { margin-bottom: 0; }
+
+  .opinion-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    font-weight: 500;
+    color: var(--pop-red);
+    background: rgba(248,113,113,0.1);
+    border-radius: 4px;
+    padding: 0.2rem 0.5rem;
+    flex-shrink: 0;
+    margin-top: 0.15rem;
+  }
+
+  .opinion-num.warn { color: var(--pop-yellow); background: rgba(251,191,36,0.1); }
+
+  .opinion-text {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    line-height: 1.75;
+  }
+
+  .opinion-text strong { color: var(--text-primary); font-weight: 600; }
+
+  /* ─── IP BAR CHART ─── */
+  .ip-bars { margin: 2.5rem 0; }
+
+  .ip-bar-item { margin-bottom: 1.3rem; }
+
+  .ip-bar-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 0.35rem;
+  }
+
+  .ip-bar-label .name {
+    font-size: 0.9rem;
+    color: var(--text-primary);
+    font-weight: 400;
+  }
+
+  .ip-bar-label .val {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.82rem;
+    color: var(--pop-purple-light);
+    font-weight: 500;
+  }
+
+  .ip-bar-track {
+    height: 8px;
+    background: rgba(108,60,225,0.08);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .ip-bar-fill {
+    height: 100%;
+    border-radius: 4px;
+    transition: width 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .ip-bar-fill.labubu { background: linear-gradient(90deg, var(--pop-purple), var(--pop-pink)); }
+  .ip-bar-fill.skull { background: linear-gradient(90deg, var(--pop-purple-dark), var(--pop-purple)); }
+  .ip-bar-fill.cry { background: linear-gradient(90deg, var(--pop-cyan), var(--pop-green)); }
+  .ip-bar-fill.molly { background: linear-gradient(90deg, var(--pop-yellow), var(--pop-pink)); }
+  .ip-bar-fill.dimoo { background: linear-gradient(90deg, var(--pop-green), var(--pop-cyan)); }
+
+  .ip-bar-sub {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.68rem;
+    color: var(--pop-green);
+    margin-top: 0.25rem;
+  }
+
+  /* ─── VERDICT BOX ─── */
+  .verdict-box {
+    margin: 3rem 0;
+    padding: 2.5rem;
+    border-radius: 12px;
+    background: linear-gradient(135deg, rgba(108,60,225,0.08) 0%, rgba(236,72,153,0.04) 100%);
+    border: 1px solid rgba(108,60,225,0.2);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .verdict-box::after {
+    content: '';
+    position: absolute;
+    bottom: -40px;
+    right: -40px;
+    width: 160px;
+    height: 160px;
+    background: radial-gradient(circle, rgba(108,60,225,0.1), transparent 70%);
+    border-radius: 50%;
+  }
+
+  .verdict-box h4 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    background: var(--gradient-hero);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .verdict-box p {
+    position: relative;
+    z-index: 1;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .verdict-box p:last-child { margin-bottom: 0; }
+
+  /* ─── DISCLAIMER ─── */
+  .disclaimer {
+    margin-top: 5rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border-subtle);
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+    font-style: italic;
+  }
+
+  /* ─── SCROLL ANIMATION ─── */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(22px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 600px) {
+    .content-wrapper { padding: 0 1.2rem 4rem; }
+    .stats-row { grid-template-columns: 1fr 1fr; gap: 0.8rem; }
+    .stat-card { padding: 1.2rem 0.8rem; }
+    .stat-value { font-size: 1.5rem; }
+    .section-title { font-size: 1.3rem; }
+    .pull-quote { padding: 1.3rem 1.3rem 1.3rem 1.8rem; }
+    .pull-quote p { font-size: 1.1rem; }
+    .opinion-card-body { padding: 1.2rem; }
+    .verdict-box { padding: 1.8rem; }
+    .hero-meta { flex-direction: column; gap: 0.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════ COVER PAGE ═══════ -->
+<section class="cover">
+  <div class="cover-ring-2"></div>
+  <div class="cover-ring-3"></div>
+  <div class="cover-content">
+    <div class="cover-fund-badge"><span class="diamond"></span> High Conviction · China Focus <span class="diamond"></span></div>
+    <div class="cover-series-label">Investment Research Report</div>
+    <h1><span class="gradient-text">Pop Mart</span><br>泡泡玛特</h1>
+    <div class="cover-divider"></div>
+    <p class="cover-subtitle">จากกล่องสุ่มสู่จักรวรรดิ IP ระดับโลก — ปีแห่งการเปลี่ยนผ่านเชิงโครงสร้าง และคำถามว่า "ถัดจากนี้... โตได้อีกแค่ไหน?"</p>
+    <div class="cover-meta-grid">
+      <div class="cover-meta-item">
+        <div class="label">Ticker</div>
+        <div class="value">9992.HK</div>
+      </div>
+      <div class="cover-meta-item">
+        <div class="label">Report Date</div>
+        <div class="value">25 มีนาคม 2026</div>
+      </div>
+      <div class="cover-meta-item">
+        <div class="label">Period</div>
+        <div class="value">FY2025 Results</div>
+      </div>
+    </div>
+    <div class="cover-fund-name">
+      <div class="team">โดย ทีมผู้จัดการกองทุน</div>
+      <div class="fund">CGSI Private Fund</div>
+    </div>
+  </div>
+  <div class="cover-scroll-hint">
+    <span>Scroll</span>
+    <div class="arrow"></div>
+  </div>
+</section>
+
+<!-- ═══════ CONTENT ═══════ -->
+<div class="content-wrapper">
+
+  <!-- ── 01 ── -->
+  <div class="section-header fade-in">
+    <span class="section-num">01</span>
+    <h2 class="section-title">ภาพรวม FY2025 — ปีแห่งการเติบโตที่ "ระเบิด"</h2>
+  </div>
+
+  <p class="fade-in">ปี 2025 เป็นปีที่ Pop Mart เปลี่ยนผ่านตัวเองจากบริษัทขาย Blind Box ไปสู่การเป็น <strong>"กลุ่มบริษัทวัฒนธรรมและความบันเทิงที่ขับเคลื่อนด้วย IP"</strong> อย่างสมบูรณ์ — รายได้รวมทะลุ <strong>37,000 ล้านหยวน</strong> กำไรสุทธิพุ่งเกิน <strong>13,000 ล้านหยวน</strong> ด้วย Net Margin ที่สูงถึง 35.1%</p>
+
+  <p class="fade-in">หัวใจของการเปลี่ยนแปลงคือ <strong>สินค้ากลุ่ม Plush (ตุ๊กตาขนฟู)</strong> ที่เติบโตถึง 560% กลายเป็นกลุ่มสินค้าทำรายได้สูงสุดเป็นอันดับ 1 เป็นครั้งแรก — สะท้อนว่า Pop Mart ไม่ได้พึ่งพาแค่กล่องสุ่มอีกต่อไป</p>
+
+  <div class="stats-row fade-in">
+    <div class="stat-card">
+      <div class="stat-label">รายได้ FY2025</div>
+      <div class="stat-value">37,120</div>
+      <div class="stat-unit">ล้านหยวน</div>
+      <div class="stat-growth up">+184.7% YoY</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">กำไรสุทธิ</div>
+      <div class="stat-value">13,012</div>
+      <div class="stat-unit">ล้านหยวน</div>
+      <div class="stat-growth up">+293.3% YoY</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">รายได้ต่างประเทศ</div>
+      <div class="stat-value">16,270</div>
+      <div class="stat-unit">ล้านหยวน</div>
+      <div class="stat-growth up">+291.9% YoY</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Net Margin</div>
+      <div class="stat-value">35.1%</div>
+      <div class="stat-unit">&nbsp;</div>
+      <div class="stat-growth up">สูงสุดเป็นประวัติการณ์</div>
+    </div>
+  </div>
+
+  <p class="fade-in">ตลาดสหรัฐฯ เป็นไฮไลต์ที่สำคัญที่สุด — ทำรายได้ <strong>6,900 ล้านหยวน เติบโต 7 เท่าตัว</strong> สูงกว่างบประมาณที่ตั้งไว้ 2,000 ล้านหยวนถึง 345% ขณะที่สมาชิกในจีนทะลุ 70 ล้านคน เพิ่มขึ้น 26.5 ล้านคนภายในปีเดียว</p>
+
+  <!-- ── 02 ── -->
+  <div class="section-header fade-in">
+    <span class="section-num">02</span>
+    <h2 class="section-title">IP Portfolio — Labubu ผงาด แต่ใครตามมา?</h2>
+  </div>
+
+  <p class="fade-in">Pop Mart มี IP ถึง <strong>6 กลุ่มที่ทำรายได้ทะลุ 2,000 ล้านหยวน</strong> แต่ตัวเลขบอกชัดว่า Labubu คือ "ม้าตัวเดียว" ที่แบกรายได้ไว้เกือบครึ่ง</p>
+
+  <div class="ip-bars fade-in">
+    <div class="ip-bar-item">
+      <div class="ip-bar-label">
+        <span class="name">Labubu (The Monsters)</span>
+        <span class="val">¥14,100M</span>
+      </div>
+      <div class="ip-bar-track">
+        <div class="ip-bar-fill labubu" style="width: 100%;"></div>
+      </div>
+      <div class="ip-bar-sub">+365% YoY — Global Driver</div>
+    </div>
+    <div class="ip-bar-item">
+      <div class="ip-bar-label">
+        <span class="name">SKULLPANDA</span>
+        <span class="val">¥3,540M</span>
+      </div>
+      <div class="ip-bar-track">
+        <div class="ip-bar-fill skull" style="width: 25%;"></div>
+      </div>
+      <div class="ip-bar-sub">+170% YoY</div>
+    </div>
+    <div class="ip-bar-item">
+      <div class="ip-bar-label">
+        <span class="name">Crybaby</span>
+        <span class="val">> ¥2,000M</span>
+      </div>
+      <div class="ip-bar-track">
+        <div class="ip-bar-fill cry" style="width: 15%;"></div>
+      </div>
+      <div class="ip-bar-sub">เติบโตต่อเนื่อง — แรงในเอเชียตะวันออกเฉียงใต้</div>
+    </div>
+    <div class="ip-bar-item">
+      <div class="ip-bar-label">
+        <span class="name">Molly (ครบรอบ 20 ปี)</span>
+        <span class="val">> ¥2,000M</span>
+      </div>
+      <div class="ip-bar-track">
+        <div class="ip-bar-fill molly" style="width: 15%;"></div>
+      </div>
+      <div class="ip-bar-sub">ตอกย้ำความยั่งยืนของ IP ระยะยาว</div>
+    </div>
+    <div class="ip-bar-item">
+      <div class="ip-bar-label">
+        <span class="name">DIMOO</span>
+        <span class="val">> ¥2,000M</span>
+      </div>
+      <div class="ip-bar-track">
+        <div class="ip-bar-fill dimoo" style="width: 15%;"></div>
+      </div>
+      <div class="ip-bar-sub">ขยายไลน์ Plush สำเร็จ</div>
+    </div>
+  </div>
+
+  <p class="fade-in"><strong>Labubu</strong> กวาดรายได้ 14,100 ล้านหยวน คิดเป็นราว 38% ของรายได้รวม และถ้ารวมสินค้าอนุพันธ์ (Plush, Derivatives) ที่ส่วนใหญ่เป็น Labubu ด้วย ตัวเลขจะยิ่งสูงกว่านี้มาก — นี่คือทั้งจุดแข็งและจุดเสี่ยงที่สำคัญ</p>
+
+  <div class="pull-quote fade-in">
+    <p>"เราเหมือนนักแข่งรถมือใหม่ที่ถูกดึงเข้าสู่สนาม F1 — สร้างความเร็วได้มหาศาล แต่การเติบโตที่เร็วกว่าคาดก็นำมาซึ่งแรงเสียดทานในทุกมิติขององค์กร"</p>
+    <div class="attr">— ผู้บริหาร Pop Mart, Analyst Briefing 2025</div>
+  </div>
+
+  <!-- ── 03 ── -->
+  <div class="section-header fade-in">
+    <span class="section-num">03</span>
+    <h2 class="section-title">ขยายจักรวรรดิ — Theme Park, หนัง, เครื่องประดับ</h2>
+  </div>
+
+  <p class="fade-in">Pop Mart ไม่ได้หยุดที่ของเล่น — บริษัทกำลังสร้าง Ecosystem รอบ IP อย่างจริงจัง เพื่อยืดวงจรชีวิตและสร้างรายได้ใหม่จากหลายช่องทาง</p>
+
+  <div class="highlight-box fade-in">
+    <h4>Business Ecosystem ที่กำลังก่อร่าง</h4>
+    <p><strong>🎢 Pop Land (Theme Park):</strong> Phase 1.5 เปิดฤดูร้อน 2025 / Phase 2 เริ่มสร้างปี 2027 เน้นโลก SKULLPANDA & Hirono</p>
+    <p><strong>🎬 ภาพยนตร์:</strong> ร่วมกับ Sony พัฒนาบทภาพยนตร์ The Monsters / Labubu ร่วมขบวน Macy's Parade + พาร์ทเนอร์ FIFA World Cup 2026</p>
+    <p><strong>💎 Jewelry (PU):</strong> เปิดแล้ว 7 สาขาในจีน</p>
+    <p><strong>🏠 Hirono Long-term Store (Bangkok):</strong> ไม่ใช่แค่ของเล่น แต่รวมเฟอร์นิเจอร์และเสื้อผ้า</p>
+    <p><strong>🍰 Desserts & Home Appliances:</strong> ขนมหวานเตรียมเปิดร้าน / เครื่องใช้ไฟฟ้าร่วมกับ JD</p>
+  </div>
+
+  <p class="fade-in">สิ่งที่น่าสังเกตคือ <strong>Dividend Payout Ratio ถูกปรับลดจาก 35% เหลือ 25%</strong> ซึ่งสะท้อนว่าบริษัทต้องการเก็บเงินสดไว้สำหรับการลงทุนขนาดใหญ่ — โดยเฉพาะ Theme Park Phase 2 ที่จะเริ่มก่อสร้างในปี 2027</p>
+
+  <!-- ── 04 ── -->
+  <div class="section-header fade-in">
+    <span class="section-num">04</span>
+    <h2 class="section-title">ทำไมหุ้นลง? — ประเด็นที่ตลาดกังวล</h2>
+  </div>
+
+  <p class="fade-in">แม้ตัวเลขทั้งปีจะโดดเด่น แต่ตลาดไม่ได้มองแค่ "อดีต" — นี่คือเหตุผลที่ราคาหุ้นตอบรับเชิงลบหลังประกาศผลประกอบการ</p>
+
+  <div class="opinion-card fade-in">
+    <div class="opinion-card-header">
+      <span class="icon">⚠️</span>
+      <h5>Bear Case — ประเด็นที่กดดันราคาหุ้น</h5>
+    </div>
+    <div class="opinion-card-body">
+      <div class="opinion-item">
+        <span class="opinion-num">01</span>
+        <div class="opinion-text">
+          <strong>ความกังวลเรื่องการพึ่งพา "Labubu" มากเกินไป (IP Concentration Risk):</strong> สัดส่วนรายได้แสดงให้เห็นถึงความไม่สมดุลของกลุ่มสินค้าอย่างชัดเจน — Labubu (The Monsters) ทำรายได้ถล่มทลายถึง <strong>14,160 ล้านหยวน (โต 365.7%)</strong> กลายเป็นรายได้หลักถึง 38.1% ของบริษัท ขณะที่ IP อื่นๆ อย่าง Molly, DIMOO หรือ SKULLPANDA รวมถึงสินค้ากลุ่มที่ไม่ใช่ Labubu เติบโตต่ำกว่าที่คาดการณ์ไว้ นักลงทุนกังวลว่าความนิยมของ Labubu อาจเป็นเพียง <strong>กระแสชั่วคราว (Fad)</strong> และหากความนิยมลดลง บริษัทอาจไม่มีตัวตายตัวแทนที่แข็งแกร่งพอในขณะนี้
+        </div>
+      </div>
+      <div class="opinion-item">
+        <span class="opinion-num">02</span>
+        <div class="opinion-text">
+          <strong>เป้าหมายปี 2026 โต > 20% แต่ขาด Solid Plan:</strong> ผู้บริหารตั้งเป้าเติบโตอย่างน้อย 20% ในปี 2026 ซึ่งฟังดูสมเหตุสมผลหลังจากปีที่โต +184.7% แต่ปัญหาคือ <strong>ยังไม่มีแผนที่ชัดเจนว่าจะทำอย่างไร</strong> — นักวิเคราะห์หลายรายไม่เชื่อมั่นว่าบริษัทจะทำได้จริง โดยเฉพาะเมื่อฐานรายได้สูงขึ้นมากแล้ว
+        </div>
+      </div>
+      <div class="opinion-item">
+        <span class="opinion-num">03</span>
+        <div class="opinion-text">
+          <strong>Dividend Payout Ratio ลดจาก 35% → 25%:</strong> สัญญาณที่ตลาดอ่านว่าบริษัทจะต้องใช้เงินลงทุนสูง (Theme Park Phase 2 เริ่มสร้างปี 2027) โดยลดผลตอบแทนให้ผู้ถือหุ้นในระยะสั้น — ทำให้หุ้นขาดแรงดึงดูดสำหรับนักลงทุนที่เน้น Income
+        </div>
+      </div>
+      <div class="opinion-item">
+        <span class="opinion-num warn">04</span>
+        <div class="opinion-text">
+          <strong>ผลกระทบจาก Tariff & Trade War ต่อ Q1/2026:</strong> ผู้บริหารยอมรับว่า สงครามการค้าและนโยบายภาษีที่เปลี่ยนแปลงไปมา ทำให้ <strong>การตั้งราคาสินค้าในตลาดต่างประเทศเป็นเรื่องยาก</strong> โดยเฉพาะในสหรัฐฯ ที่เป็นตลาดเติบโตเร็วที่สุด และกระทบ Margin เล็กน้อยในช่วง Q1
+        </div>
+      </div>
+      <div class="opinion-item">
+        <span class="opinion-num warn">05</span>
+        <div class="opinion-text">
+          <strong>Downside จากสงครามการค้าระยะยาว:</strong> หากสถานการณ์ Trade War ยืดเยื้อ จะกระทบทั้ง <strong>กำลังซื้อผู้บริโภค</strong> (โดยเฉพาะในสหรัฐฯ ที่เป็นตลาดหลัก), <strong>ค่าขนส่งทางเรือ</strong> ที่อาจพุ่งสูงขึ้น และ <strong>ต้นทุนวัตถุดิบ</strong> ที่ผันผวน — ซึ่งทั้งหมดจะกดดัน Margin ในปี 2026
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 05 ── -->
+  <div class="section-header fade-in">
+    <span class="section-num">05</span>
+    <h2 class="section-title">มุมมอง 2026 — ปีแห่งการปรับฐาน</h2>
+  </div>
+
+  <p class="fade-in">บริษัทเปรียบตัวเองเป็น "นักแข่งที่ต้องเข้า Pit Stop" — หลังจากขับมาเร็วจี๋ 2 ปีติดต่อกัน ปี 2026 คือปีที่ต้องซ่อมบำรุงเครื่องยนต์ ปรับจูน Supply Chain ลงทุนระบบ AI & IT เพื่อทำ Global Simultaneous Launch และเสริมแกร่งทีมงานที่ขยายตัวเร็วเกินไป</p>
+
+  <div class="table-wrap fade-in">
+    <table>
+      <thead>
+        <tr>
+          <th>เป้าหมายเชิงยุทธศาสตร์ 2026</th>
+          <th>รายละเอียด</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Healthy Growth</td>
+          <td>เน้นคุณภาพ ไม่ใช่แค่ตัวเลข / รักษา Margin</td>
+        </tr>
+        <tr>
+          <td>Global Simultaneous Launch</td>
+          <td>ลงทุน AI + IT ลดดีเลย์ระหว่างตลาด</td>
+        </tr>
+        <tr>
+          <td>Supply Chain Optimization</td>
+          <td>รวมระบบออกแบบ-ผลิต-โลจิสติกส์เป็นเนื้อเดียว</td>
+        </tr>
+        <tr>
+          <td>Market Deepening</td>
+          <td>ตะวันออกกลาง, เอเชียใต้, อเมริกาใต้ + Flagship ใหม่ที่ Times Sq & 5th Ave</td>
+        </tr>
+        <tr>
+          <td>Organizational Reinforcement</td>
+          <td>ปรับโครงสร้าง 4 Regional Hubs / 11,000+ พนักงาน</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ── 06 ── -->
+  <div class="section-header fade-in">
+    <span class="section-num">06</span>
+    <h2 class="section-title">บทสรุป — Normalized Growth & Building for the Long Run</h2>
+  </div>
+
+  <div class="verdict-box fade-in">
+    <h4>มุมมองของเรา</h4>
+    <p>เราเชื่อว่า <strong>Pop Mart ปี 2026 เป็นปีที่การเติบโต Normalized</strong> — หลังจาก 2 ปีของการเติบโตแบบระเบิด (+184.7% รายได้ และ +293.3% กำไร ในปี 2025) ตลาดเริ่มตั้งคำถามว่าบริษัทจะรักษาโมเมนตัมได้แค่ไหน และความจริงคือ <strong>มันจะไม่โตแบบนี้อีกแล้ว</strong> — แต่นั่นไม่ใช่เรื่องเลวร้าย</p>
+    <p>ปี 2026 คือ <strong>ปีแห่งการปรับฐานสร้าง Fundamental</strong> — วางระบบ Supply Chain ให้ทันการขยายตัว, พัฒนาธุรกิจใหม่ที่เกี่ยวเนื่อง (Theme Park, ภาพยนตร์, Jewelry, Lifestyle), และสร้างโครงสร้างองค์กรให้แข็งแรงพอรับการเป็นบริษัทระดับโลก</p>
+    <p>อย่างไรก็ตาม <strong>Downside ยังมีอยู่จริง</strong> — สงครามการค้าที่ยืดเยื้ออาจกระทบทั้งกำลังซื้อ ค่าขนส่ง และต้นทุนวัตถุดิบ ขณะที่การพึ่งพา Labubu มากเกินไปเป็นความเสี่ยงเชิงโครงสร้างที่ยังไม่มีคำตอบชัดเจน</p>
+    <p style="color: var(--pop-purple-light); font-weight: 500;">บทสรุป — ระยะยาวเรายังเชื่อว่า Pop Mart มีโอกาสที่จะสามารถสร้างการเติบโตได้ แต่ระยะสั้นในปีนี้จะเป็นปีที่บริษัทต้องปรับโครงสร้างธุรกิจ พิสูจน์ตัวเองในช่วงที่กระแส Labubu และ Art Toy จากช่วง Hype กลับสู่ภาวะปกติ</p>
+  </div>
+
+  <div class="disclaimer fade-in">
+    <strong>Disclaimer:</strong> บทความนี้จัดทำขึ้นเพื่อวัตถุประสงค์ในการให้ข้อมูลเท่านั้น ไม่ถือเป็นคำแนะนำในการลงทุน การซื้อ หรือขายหลักทรัพย์ใดๆ ผู้อ่านควรศึกษาข้อมูลเพิ่มเติมและพิจารณาปัจจัยความเสี่ยงต่างๆ ก่อนตัดสินใจลงทุน การลงทุนมีความเสี่ยง ผู้ลงทุนอาจได้รับเงินลงทุนคืนน้อยกว่าเงินลงทุนเริ่มแรก ผู้เขียนอาจมีส่วนได้เสียในหุ้นที่กล่าวถึง
+  </div>
+
+</div>
+
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) entry.target.classList.add('visible');
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
